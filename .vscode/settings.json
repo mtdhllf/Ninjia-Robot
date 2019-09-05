@@ -3,6 +3,9 @@
         "CGO_LDFLAGS": "-Wl,--kill-at",
         "CGO_ENABLED": 1,
         "GOOS": "windows",
-        "GOARCH": 386
+        "GOARCH": 386,
+        "goroot": "C:\\Go",
+        "gopath": "C:\\Users\\Administrator\\go",
+        "gocodeAutoBuild": true
     }
 }

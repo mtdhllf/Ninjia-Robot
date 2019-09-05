@@ -1,26 +1,26 @@
-:: å…³é—­æŽ§åˆ¶å°å›žæ˜¾
+:: ¹Ø±Õ¿ØÖÆÌ¨»ØÏÔ
 @echo off
 
-echo æ­£åœ¨ç”Ÿæˆapp.json
+echo ÕýÔÚÉú³Éapp.json
 go build github.com/Tnze/CoolQ-Golang-SDK/tools/cqcfg
 go generate
 IF ERRORLEVEL 1 pause
 
-echo æ­£åœ¨è®¾ç½®çŽ¯å¢ƒå˜é‡
+echo ÕýÔÚÉèÖÃ»·¾³±äÁ¿
 SET CGO_LDFLAGS=-Wl,--kill-at
 SET CGO_ENABLED=1
 SET GOOS=windows
 SET GOARCH=386
 SET GOPROXY=https://goproxy.cn
 
-echo æ­£åœ¨ç¼–è¯‘app.dll
+echo ÕýÔÚ±àÒëapp.dll
 go build -buildmode=c-shared -o app.dll
 IF ERRORLEVEL 1 pause
 
-:: å¦‚æžœè®¾ç½®äº†çŽ¯å¢ƒå˜é‡ï¼Œåˆ™æŠŠapp.dllå’Œapp.jsonå¤åˆ¶åˆ°é…·Qçš„devæ–‡ä»¶å¤¹
-REM SET DevDir=D:\é…·Q Pro\dev\me.cqp.tnze.demo
+:: Èç¹ûÉèÖÃÁË»·¾³±äÁ¿£¬Ôò°Ñapp.dllºÍapp.json¸´ÖÆµ½¿áQµÄdevÎÄ¼þ¼Ð
+REM SET DevDir=D:\¿áQ Pro\dev\me.cqp.tnze.demo
 if defined DevDir (
-    echo æ­£åœ¨å¤åˆ¶æ–‡ä»¶
+    echo ÕýÔÚ¸´ÖÆÎÄ¼þ
     for %%f in (app.dll,app.json) do move %%f "%DevDir%\%%f" > nul
     IF ERRORLEVEL 1 pause
 )
