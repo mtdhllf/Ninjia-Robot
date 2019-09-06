@@ -18,7 +18,7 @@ go build -buildmode=c-shared -o app.dll
 IF ERRORLEVEL 1 pause
 
 :: 如果设置了环境变量，则把app.dll和app.json复制到酷Q的dev文件夹
-REM SET DevDir=D:\酷Q Pro\dev\me.cqp.tnze.demo
+REM SET DevDir=C:\酷Q Air\dev\me.cqp.mtdhllf.ninja.robot
 if defined DevDir (
     echo 正在复制文件
     for %%f in (app.dll,app.json) do move %%f "%DevDir%\%%f" > nul
