@@ -6,6 +6,7 @@ import (
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/robfig/cron"
+	"math/rand"
 	"strings"
 	"time"
 )
@@ -34,8 +35,10 @@ func init() {
 	db.AutoMigrate(&Key{})
 
 	//定时器1(7-23时,每小时执行一次)
-	spec1 := "0 0 7-23/1 * * ?"
-	err = c.AddFunc(spec1, testJob)
+	err = c.AddFunc("0 0 7-23/1 * * ?", testJob)
+
+	//定时器2(7-23时,每小时执行一次)
+	err = c.AddFunc("0 0 17-19/2 * * Mon-Fri,Sun", 团本提醒)
 
 	if err != nil {
 		panic(err.Error())
@@ -248,4 +251,11 @@ func sendHelp(single bool, from int64) {
 func testJob() {
 	msg := "【滚来滚去】"
 	cqp.SendGroupMsg(816440954, msg)
+}
+
+/**副本提醒,19-21,提醒两次*/
+func 团本提醒() {
+	tips := []string{"【团本小助手】没打团本的记得打哦~", "【团本小助手】今天你练本了没?"}
+	rand.Seed(time.Now().Unix())
+	cqp.SendGroupMsg(816440954, tips[rand.Intn(len(tips))])
 }

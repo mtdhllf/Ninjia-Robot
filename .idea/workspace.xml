@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="812df8f9-d413-4495-a9a2-fe5281535bb8" name="Default Changelist" comment="Default Changelist">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vscode/launch.json" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/cqcfg.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.go" beforeDir="false" afterPath="$PROJECT_DIR$/app.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -251,7 +247,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="更新SDK" />
     <MESSAGE value="兑换码基础功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="兑换码基础功能" />
+    <MESSAGE value="更新sdk,增加定时功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="更新sdk,增加定时功能" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
