@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="812df8f9-d413-4495-a9a2-fe5281535bb8" name="Default Changelist" comment="Default Changelist">
+    <list default="true" id="812df8f9-d413-4495-a9a2-fe5281535bb8" name="Default Changelist" comment="定时器修改">
       <change afterPath="$PROJECT_DIR$/cqcfg.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.go" beforeDir="false" afterPath="$PROJECT_DIR$/app.go" afterDir="false" />
@@ -134,7 +134,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Go Test.go test NinjiaRobot">
+  <component name="RunManager" selected="Go Build.go build app.go">
     <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
       <module name="CoolQ-Golang-Plugin" />
       <working_directory value="$PROJECT_DIR$/" />
@@ -157,7 +157,7 @@
     <configuration name="go build github.com/mtdhllf/NinjiaRobot" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="CoolQ-Golang-Plugin" />
       <working_directory value="$PROJECT_DIR$" />
-      <kind value="PACKAGE" />
+      <kind value="FILE" />
       <package value="github.com/mtdhllf/NinjiaRobot" />
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
@@ -203,10 +203,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Test.go test NinjiaRobot" />
         <item itemvalue="Go Build.go build app.go" />
-        <item itemvalue="Go Build.go build github.com/mtdhllf/NinjiaRobot" />
         <item itemvalue="Go Build.go build test.go" />
+        <item itemvalue="Go Build.go build github.com/mtdhllf/NinjiaRobot" />
+        <item itemvalue="Go Test.go test NinjiaRobot" />
         <item itemvalue="Go Build.go build key.go" />
       </list>
     </recent_temporary>
@@ -248,7 +248,8 @@
     <MESSAGE value="更新SDK" />
     <MESSAGE value="兑换码基础功能" />
     <MESSAGE value="更新sdk,增加定时功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="更新sdk,增加定时功能" />
+    <MESSAGE value="添加团本提醒" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加团本提醒" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>

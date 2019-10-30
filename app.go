@@ -3,10 +3,13 @@ package main
 import (
 	"fmt"
 	"github.com/Tnze/CoolQ-Golang-SDK/cqp"
+	"github.com/Tnze/CoolQ-Golang-SDK/cqp/util"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/robfig/cron"
 	"math/rand"
+	"regexp"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -27,34 +30,34 @@ func init() {
 	cqp.PrivateMsg = onPrivateMsg
 	cqp.GroupMsg = onGroupMsg
 
-	//数据库
-	if err != nil {
-		panic(err.Error())
-	}
 	// 自动迁移模式
 	db.AutoMigrate(&Key{})
 
-	//定时器1(7-23时,每小时执行一次)
-	err = c.AddFunc("0 0 7-23/1 * * ?", testJob)
-
-	//定时器2(7-23时,每小时执行一次)
-	err = c.AddFunc("0 0 17-19/2 * * Mon-Fri,Sun", 团本提醒)
-
+	//错误检查
 	if err != nil {
+		cqp.AddLog(cqp.Error, "db", err.Error())
 		panic(err.Error())
 	}
-	c.Start()
+
+	//定时任务
+	initJob()
 }
 
-/**私聊入口*/
+//私聊入口
 func onPrivateMsg(subType, msgID int32, fromQQ int64, msg string, font int32) int32 {
 	code := onKeyPrivateMsg(subType, msgID, fromQQ, msg, font)
 	//cqp.SendPrivateMsg(fromQQ, msg) //复读机
 	return code
 }
 
-/**群聊入口*/
+//群聊入口
 func onGroupMsg(subType, msgID int32, fromGroup, fromQQ int64, fromAnonymous, msg string, font int32) int32 {
+	if hasAtSelf(msg) {
+		//cqp.SendGroupMsg(fromGroup,msgAt(fromQQ,"(●'◡'●)ﾉ"))
+		cqp.SendGroupMsg(fromGroup, util.CQCode("at", "qq", fromQQ)+"(●'◡'●)ﾉ")
+		return int32(1)
+	}
+
 	code := onKeyGroupMsg(subType, msgID, fromGroup, fromQQ, fromAnonymous, msg, font)
 	return code
 }
@@ -234,7 +237,7 @@ func onKeyGroupMsg(subType, msgID int32, fromGroup, fromQQ int64, fromAnonymous,
 
 //</editor-fold>
 
-/**帮助菜单*/
+//帮助菜单
 func sendHelp(single bool, from int64) {
 	help := "兑换码功能:\n" +
 		"1.查询指令☞<兑换码本周/本周兑换码/兑换码查询>\n" +
@@ -247,15 +250,45 @@ func sendHelp(single bool, from int64) {
 	}
 }
 
-/**定时任务*/
-func testJob() {
-	msg := "【滚来滚去】"
-	cqp.SendGroupMsg(816440954, msg)
+//是否@自己
+func hasAtSelf(msg string) bool {
+	reg := regexp.MustCompile(`\[CQ:at,qq=(\d+)\]`)
+	match := reg.FindStringSubmatch(msg)
+	for _, v := range match {
+		if strconv.FormatInt(cqp.GetLoginQQ(), 10) == v {
+			return true
+		}
+	}
+	return false
 }
 
-/**副本提醒,19-21,提醒两次*/
-func 团本提醒() {
-	tips := []string{"【团本小助手】没打团本的记得打哦~", "【团本小助手】今天你练本了没?"}
-	rand.Seed(time.Now().Unix())
-	cqp.SendGroupMsg(816440954, tips[rand.Intn(len(tips))])
+//定时器任务
+func initJob() {
+	var err error
+	//早晨播报
+	err = c.AddFunc("0 0 7 * * ?", func() {
+		cqp.SendGroupMsg(816440954, "早上好,今天也是充满希望的一天(●'◡'●)ﾉ")
+	})
+	//晚上播报
+	err = c.AddFunc("0 0 23 * * ?", func() {
+		cqp.SendGroupMsg(816440954, "【碎觉碎觉】")
+	})
+	//团本提醒
+	err = c.AddFunc("0 0 17-21/2 * * Mon-Fri,Sun", func() {
+		tips := []string{"【团本小助手】没打团本的记得打哦~", "【团本小助手】今天你练本了没?"}
+		rand.Seed(time.Now().Unix())
+		cqp.SendGroupMsg(816440954, tips[rand.Intn(len(tips))])
+	})
+	//家族战提醒
+	err = c.AddFunc("0 30 19 * * Sat,Sun", func() {
+		cqp.SendGroupMsg(816440954, "【家族战提醒】还有半小时开始家族战~")
+	})
+
+	if err != nil {
+		cqp.AddLog(cqp.Error, "job", err.Error())
+		return
+	}
+
+	c.Start()
+
 }
