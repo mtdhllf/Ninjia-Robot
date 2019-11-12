@@ -1,13 +1,19 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/Tnze/CoolQ-Golang-SDK/cqp"
 	"github.com/Tnze/CoolQ-Golang-SDK/cqp/util"
+	"io/ioutil"
+	"math/rand"
+	"net/http"
+
+	//"github.com/Tnze/CoolQ-Golang-SDK/cqp"
+	//"github.com/Tnze/CoolQ-Golang-SDK/cqp/util"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/robfig/cron"
-	"math/rand"
 	"regexp"
 	"strconv"
 	"strings"
@@ -54,10 +60,11 @@ func onPrivateMsg(subType, msgID int32, fromQQ int64, msg string, font int32) in
 func onGroupMsg(subType, msgID int32, fromGroup, fromQQ int64, fromAnonymous, msg string, font int32) int32 {
 	if hasAtSelf(msg) {
 		//cqp.SendGroupMsg(fromGroup,msgAt(fromQQ,"(●'◡'●)ﾉ"))
-		cqp.SendGroupMsg(fromGroup, util.CQCode("at", "qq", fromQQ)+"(●'◡'●)ﾉ")
+
+		//cqp.SendGroupMsg(fromGroup, util.CQCode("at", "qq", fromQQ)+"(●'◡'●)ﾉ")
+		robotAnswer(fromGroup, fromQQ, msg)
 		return int32(1)
 	}
-
 	code := onKeyGroupMsg(subType, msgID, fromGroup, fromQQ, fromAnonymous, msg, font)
 	return code
 }
@@ -262,33 +269,57 @@ func hasAtSelf(msg string) bool {
 	return false
 }
 
+func robotAnswer(fromGroup, fromQQ int64, msg string) {
+	//get请求
+	//http.Get的参数必须是带http://协议头的完整url,不然请求结果为空
+	resp, _ := http.Get(RobotUrl + msg)
+	defer resp.Body.Close()
+	body, _ := ioutil.ReadAll(resp.Body)
+	response := string(body)
+	var robotMsg RobotMsg
+	if err := json.Unmarshal([]byte(response), &robotMsg); err == nil {
+		cqp.SendGroupMsg(fromGroup, util.CQCode("at", "qq", fromQQ)+util.Escape(robotMsg.Content))
+	} else {
+		cqp.AddLog(cqp.Debug, "robotAnswer", err.Error())
+	}
+}
+
+//截取带at的消息体
+func subAtMsg(msg string) string {
+	result := ""
+	reg := regexp.MustCompile(`\[CQ:at,qq=\d+?\](.+)`)
+	match := reg.FindStringSubmatch(msg)
+	if len(match) == 2 {
+		return strings.TrimSpace(match[1])
+	}
+	return result
+}
+
 //定时器任务
 func initJob() {
-	var err error
 	//早晨播报
-	err = c.AddFunc("0 0 7 * * ?", func() {
+	err = c.AddFunc("5 0 7 * * ?", func() {
 		cqp.SendGroupMsg(816440954, "早上好,今天也是充满希望的一天(●'◡'●)ﾉ")
 	})
 	//晚上播报
-	err = c.AddFunc("0 0 23 * * ?", func() {
+	err = c.AddFunc("5 0 23 * * ?", func() {
 		cqp.SendGroupMsg(816440954, "【碎觉碎觉】")
 	})
 	//团本提醒
-	err = c.AddFunc("0 0 17-21/2 * * Mon-Fri,Sun", func() {
+	err = c.AddFunc("5 0 17-21/2 * * Mon-Fri,Sun", func() {
 		tips := []string{"【团本小助手】没打团本的记得打哦~", "【团本小助手】今天你练本了没?"}
 		rand.Seed(time.Now().Unix())
 		cqp.SendGroupMsg(816440954, tips[rand.Intn(len(tips))])
 	})
 	//家族战提醒
-	err = c.AddFunc("0 30 19 * * Sat,Sun", func() {
+	err = c.AddFunc("10 30 19 * * Sat,Sun", func() {
 		cqp.SendGroupMsg(816440954, "【家族战提醒】还有半小时开始家族战~")
 	})
 
 	if err != nil {
-		cqp.AddLog(cqp.Error, "job", err.Error())
+		cqp.AddLog(cqp.Debug, "job", err.Error())
 		return
 	}
-
 	c.Start()
 
 }
