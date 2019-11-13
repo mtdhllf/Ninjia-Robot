@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="812df8f9-d413-4495-a9a2-fe5281535bb8" name="Default Changelist" comment="定时器修改">
-      <change afterPath="$PROJECT_DIR$/Config.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Model.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cqcfg.exe" afterDir="false" />
+    <list default="true" id="812df8f9-d413-4495-a9a2-fe5281535bb8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.go" beforeDir="false" afterPath="$PROJECT_DIR$/app.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -253,7 +249,8 @@
     <MESSAGE value="更新sdk,增加定时功能" />
     <MESSAGE value="添加团本提醒" />
     <MESSAGE value="定时器修改" />
-    <option name="LAST_COMMIT_MESSAGE" value="定时器修改" />
+    <MESSAGE value="msg" />
+    <option name="LAST_COMMIT_MESSAGE" value="msg" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
