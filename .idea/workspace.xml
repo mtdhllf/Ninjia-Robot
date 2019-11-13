@@ -3,6 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="812df8f9-d413-4495-a9a2-fe5281535bb8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model.go" beforeDir="false" afterPath="$PROJECT_DIR$/Model.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.go" beforeDir="false" afterPath="$PROJECT_DIR$/app.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.go" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -117,6 +122,9 @@
     <property name="settings.editor.selected.configurable" value="go" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\lilinfeng\git\NinjiaRobot\test" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\lilinfeng\git\qgj" />
     </key>
@@ -133,7 +141,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Go Build.go build test.go">
+  <component name="RunManager" selected="Go Test.TestAnswer in github.com/mtdhllf/NinjiaRobot/test">
     <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
       <module name="CoolQ-Golang-Plugin" />
       <working_directory value="$PROJECT_DIR$/" />
@@ -161,15 +169,6 @@
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
-    <configuration name="go build key.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-      <module name="CoolQ-Golang-Plugin" />
-      <working_directory value="$PROJECT_DIR$" />
-      <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/key/key.go" />
-      <package value="github.com/Tnze/CoolQ-Golang-Plugin" />
-      <directory value="$PROJECT_DIR$/" />
-      <method v="2" />
-    </configuration>
     <configuration name="go build test.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="CoolQ-Golang-Plugin" />
       <working_directory value="$PROJECT_DIR$" />
@@ -177,6 +176,17 @@
       <filePath value="$PROJECT_DIR$/test.go" />
       <package value="github.com/Tnze/CoolQ-Golang-Plugin" />
       <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestAnswer in github.com/mtdhllf/NinjiaRobot/test" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="CoolQ-Golang-Plugin" />
+      <working_directory value="$PROJECT_DIR$/test" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/mtdhllf/NinjiaRobot/test" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^TestAnswer$" />
       <method v="2" />
     </configuration>
     <configuration default="true" type="GoTestRunConfiguration" factoryName="Go Test">
@@ -202,11 +212,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.TestAnswer in github.com/mtdhllf/NinjiaRobot/test" />
         <item itemvalue="Go Build.go build test.go" />
         <item itemvalue="Go Build.go build app.go" />
         <item itemvalue="Go Build.go build github.com/mtdhllf/NinjiaRobot" />
         <item itemvalue="Go Test.go test NinjiaRobot" />
-        <item itemvalue="Go Build.go build key.go" />
       </list>
     </recent_temporary>
   </component>

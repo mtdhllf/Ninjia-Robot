@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 	"github.com/Tnze/CoolQ-Golang-SDK/cqp"
 	"github.com/Tnze/CoolQ-Golang-SDK/cqp/util"
@@ -13,6 +12,7 @@ import (
 	//"github.com/Tnze/CoolQ-Golang-SDK/cqp/util"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
+	"github.com/json-iterator/go"
 	"github.com/robfig/cron"
 	"regexp"
 	"strconv"
@@ -62,21 +62,13 @@ func onGroupMsg(subType, msgID int32, fromGroup, fromQQ int64, fromAnonymous, ms
 		//cqp.SendGroupMsg(fromGroup,msgAt(fromQQ,"(●'◡'●)ﾉ"))
 
 		//cqp.SendGroupMsg(fromGroup, util.CQCode("at", "qq", fromQQ)+"(●'◡'●)ﾉ")
-		robotAnswer(fromGroup, fromQQ, msg)
+
+		robotAnswer(fromGroup, fromQQ, subAtMsg(msg))
 		return int32(1)
 	}
 	code := onKeyGroupMsg(subType, msgID, fromGroup, fromQQ, fromAnonymous, msg, font)
 	return code
 }
-
-//<editor-fold defaultstate="collapsed" desc="结构体">
-//兑换码
-type Key struct {
-	gorm.Model
-	Key string `gorm:"size:128"`
-}
-
-//</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc="私聊">
 func onKeyPrivateMsg(subType, msgID int32, fromQQ int64, msg string, font int32) int32 {
@@ -272,15 +264,17 @@ func hasAtSelf(msg string) bool {
 func robotAnswer(fromGroup, fromQQ int64, msg string) {
 	//get请求
 	//http.Get的参数必须是带http://协议头的完整url,不然请求结果为空
+	cqp.AddLog(cqp.Debug, "robotAnswer-msg", msg)
 	resp, _ := http.Get(RobotUrl + msg)
 	defer resp.Body.Close()
 	body, _ := ioutil.ReadAll(resp.Body)
-	response := string(body)
+	cqp.AddLog(cqp.Debug, "robotAnswer-body", string(body))
 	var robotMsg RobotMsg
-	if err := json.Unmarshal([]byte(response), &robotMsg); err == nil {
+	var jsonIterator = jsoniter.ConfigCompatibleWithStandardLibrary
+	if err := jsonIterator.Unmarshal(body, &robotMsg); err == nil {
 		cqp.SendGroupMsg(fromGroup, util.CQCode("at", "qq", fromQQ)+util.Escape(robotMsg.Content))
 	} else {
-		cqp.AddLog(cqp.Debug, "robotAnswer", err.Error())
+		cqp.AddLog(cqp.Debug, "robotAnswer-answer", err.Error())
 	}
 }
 
