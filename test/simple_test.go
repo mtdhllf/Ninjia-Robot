@@ -1,13 +1,13 @@
-package main
+package gotest
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"net/http"
+	"testing"
 )
 
-func main() {
+func TestAnswer(t *testing.T) {
 	msg := "深圳天气"
 	//get请求
 	//http.Get的参数必须是带http://协议头的完整url,不然请求结果为空
@@ -17,7 +17,9 @@ func main() {
 	response := string(body)
 	var robotMsg robotMsg
 	if err := json.Unmarshal([]byte(response), &robotMsg); err == nil {
-		fmt.Println(robotMsg.Content)
+		t.Log(robotMsg.Content)
+	} else {
+		t.Error("Test_Answer:" + err.Error())
 	}
 
 }
