@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/Tnze/CoolQ-Golang-SDK/cqp"
 	"github.com/Tnze/CoolQ-Golang-SDK/cqp/util"
@@ -230,6 +231,46 @@ func onKeyGroupMsg(subType, msgID int32, fromGroup, fromQQ int64, fromAnonymous,
 			code = 1
 			sendHelp(false, fromGroup)
 		}
+	}
+	if strings.HasPrefix(msg, "搜题 ") && len(strings.Split(msg, " ")) > 1 {
+		split := strings.Split(msg, " ")
+		cqp.AddLog(cqp.Debug, "搜题", split[1])
+		resp, _ := http.Post("https://ninja.yua.im/ninja/qa",
+			"application/x-www-form-urlencoded",
+			strings.NewReader("search="+split[1]))
+
+		defer resp.Body.Close()
+		body, _ := ioutil.ReadAll(resp.Body)
+		response := string(body)
+
+		msg := "搜题出错,请稍后再试~"
+
+		var exam Exam
+		if err := json.Unmarshal([]byte(response), &exam); err == nil {
+			if exam.IsSuc && exam.Data.Total > 0 {
+				all := make([]string, exam.Data.Total+1)
+				all[0] = "小改改为你找到以下结果:"
+				for index, v := range exam.Data.Rows {
+					title := strconv.Itoa(index+1) + ". " + v.Title
+					s1 := make([]string, len(v.Answers)+1)
+					s1[0] = title
+					for k, v := range v.Answers {
+						if v.IsCorrect {
+							//正确
+							s1[k+1] = v.Content + " √"
+						} else {
+							s1[k+1] = v.Content
+						}
+					}
+					//一条题目及回答
+					all[index+1] = strings.Join(s1, "\n")
+				}
+				msg = strings.TrimSpace(strings.Join(all, "\n"))
+			} else {
+				msg = "没有找到你要的题目哦~"
+			}
+		}
+		cqp.SendGroupMsg(fromGroup, msg)
 	}
 	return code
 }
