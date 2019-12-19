@@ -6,7 +6,6 @@ import (
 	"github.com/Tnze/CoolQ-Golang-SDK/cqp"
 	"github.com/Tnze/CoolQ-Golang-SDK/cqp/util"
 	"io/ioutil"
-	"math/rand"
 	"net/http"
 
 	//"github.com/Tnze/CoolQ-Golang-SDK/cqp"
@@ -64,7 +63,12 @@ func onGroupMsg(subType, msgID int32, fromGroup, fromQQ int64, fromAnonymous, ms
 
 		//cqp.SendGroupMsg(fromGroup, util.CQCode("at", "qq", fromQQ)+"(●'◡'●)ﾉ")
 
-		robotAnswer(fromGroup, fromQQ, subAtMsg(msg))
+		if strings.Contains(subAtMsg(msg), "兑换码") {
+			onKeyGroupMsg(subType, msgID, fromGroup, fromQQ, fromAnonymous, "本周兑换码", font)
+		} else {
+			robotAnswer(fromGroup, fromQQ, subAtMsg(msg))
+		}
+
 		return int32(1)
 	}
 	code := onKeyGroupMsg(subType, msgID, fromGroup, fromQQ, fromAnonymous, msg, font)
@@ -340,12 +344,12 @@ func initJob() {
 	err = c.AddFunc("5 0 23 * * ?", func() {
 		cqp.SendGroupMsg(816440954, "【碎觉碎觉】")
 	})
-	//团本提醒
-	err = c.AddFunc("5 0 17-21/2 * * Mon-Fri,Sun", func() {
-		tips := []string{"【团本小助手】没打团本的记得打哦~", "【团本小助手】今天你练本了没?"}
-		rand.Seed(time.Now().Unix())
-		cqp.SendGroupMsg(816440954, tips[rand.Intn(len(tips))])
-	})
+	//团本提醒,花总说太烦了
+	//err = c.AddFunc("5 0 17-21/2 * * Mon-Fri,Sun", func() {
+	//	tips := []string{"【团本小助手】没打团本的记得打哦~", "【团本小助手】今天你练本了没?"}
+	//	rand.Seed(time.Now().Unix())
+	//	cqp.SendGroupMsg(816440954, tips[rand.Intn(len(tips))])
+	//})
 	//家族战提醒
 	err = c.AddFunc("10 30 19 * * Sat,Sun", func() {
 		cqp.SendGroupMsg(816440954, "【家族战提醒】还有半小时开始家族战~")

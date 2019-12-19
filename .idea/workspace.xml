@@ -4,8 +4,7 @@
     <list default="true" id="812df8f9-d413-4495-a9a2-fe5281535bb8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.go" beforeDir="false" afterPath="$PROJECT_DIR$/app.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model.go" beforeDir="false" afterPath="$PROJECT_DIR$/model.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/simple_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/test/simple_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cqcfg.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cqcfg.exe" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -259,7 +258,8 @@
     <MESSAGE value="添加团本提醒" />
     <MESSAGE value="定时器修改" />
     <MESSAGE value="msg" />
-    <option name="LAST_COMMIT_MESSAGE" value="msg" />
+    <MESSAGE value="增加搜题功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加搜题功能" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
