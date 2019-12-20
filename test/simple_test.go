@@ -51,7 +51,7 @@ func TestSearch(t *testing.T) {
 }
 
 func TestAnswer(t *testing.T) {
-	msg := "深圳天气"
+	msg := "你是"
 	//get请求
 	//http.Get的参数必须是带http://协议头的完整url,不然请求结果为空
 	resp, _ := http.Get("http://api.qingyunke.com/api.php?key=free&appid=0&msg=" + msg)

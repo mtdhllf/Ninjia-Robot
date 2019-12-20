@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="812df8f9-d413-4495-a9a2-fe5281535bb8" name="Default Changelist" comment="">
+    <list default="true" id="812df8f9-d413-4495-a9a2-fe5281535bb8" name="Default Changelist" comment="增加at消息的兑换码指令处理">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.go" beforeDir="false" afterPath="$PROJECT_DIR$/app.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cqcfg.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cqcfg.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/simple_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/test/simple_test.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -116,7 +116,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="go" />
+    <property name="settings.editor.selected.configurable" value="settings.github" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -138,7 +138,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Go Test.TestSearch in github.com/mtdhllf/NinjiaRobot/test">
+  <component name="RunManager" selected="Go Test.TestAnswer in github.com/mtdhllf/NinjiaRobot/test (2)">
     <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
       <module name="CoolQ-Golang-Plugin" />
       <working_directory value="$PROJECT_DIR$/" />
@@ -149,30 +149,26 @@
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
-    <configuration name="go build app.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+    <configuration name="TestAnswer in github.com/mtdhllf/NinjiaRobot/test (1)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="CoolQ-Golang-Plugin" />
-      <working_directory value="$PROJECT_DIR$" />
-      <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/app.go" />
-      <package value="github.com/Tnze/CoolQ-Golang-Plugin" />
+      <working_directory value="$PROJECT_DIR$/test" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/mtdhllf/NinjiaRobot/test" />
       <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^TestAnswer$" />
       <method v="2" />
     </configuration>
-    <configuration name="go build github.com/mtdhllf/NinjiaRobot" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+    <configuration name="TestAnswer in github.com/mtdhllf/NinjiaRobot/test (2)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="CoolQ-Golang-Plugin" />
-      <working_directory value="$PROJECT_DIR$" />
-      <kind value="FILE" />
-      <package value="github.com/mtdhllf/NinjiaRobot" />
+      <working_directory value="$PROJECT_DIR$/test" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/mtdhllf/NinjiaRobot/test" />
       <directory value="$PROJECT_DIR$/" />
-      <method v="2" />
-    </configuration>
-    <configuration name="go build test.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-      <module name="CoolQ-Golang-Plugin" />
-      <working_directory value="$PROJECT_DIR$" />
-      <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/test.go" />
-      <package value="github.com/Tnze/CoolQ-Golang-Plugin" />
-      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^TestAnswer$" />
       <method v="2" />
     </configuration>
     <configuration name="TestAnswer in github.com/mtdhllf/NinjiaRobot/test" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
@@ -184,6 +180,17 @@
       <directory value="$PROJECT_DIR$/" />
       <filePath value="$PROJECT_DIR$/" />
       <pattern value="^TestAnswer$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestSearch in github.com/mtdhllf/NinjiaRobot/test (1)" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="CoolQ-Golang-Plugin" />
+      <working_directory value="$PROJECT_DIR$/test" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/mtdhllf/NinjiaRobot/test" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^TestSearch$" />
       <method v="2" />
     </configuration>
     <configuration name="TestSearch in github.com/mtdhllf/NinjiaRobot/test" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
@@ -210,11 +217,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.TestAnswer in github.com/mtdhllf/NinjiaRobot/test (2)" />
+        <item itemvalue="Go Test.TestAnswer in github.com/mtdhllf/NinjiaRobot/test (1)" />
+        <item itemvalue="Go Test.TestSearch in github.com/mtdhllf/NinjiaRobot/test (1)" />
         <item itemvalue="Go Test.TestSearch in github.com/mtdhllf/NinjiaRobot/test" />
         <item itemvalue="Go Test.TestAnswer in github.com/mtdhllf/NinjiaRobot/test" />
-        <item itemvalue="Go Build.go build test.go" />
-        <item itemvalue="Go Build.go build app.go" />
-        <item itemvalue="Go Build.go build github.com/mtdhllf/NinjiaRobot" />
       </list>
     </recent_temporary>
   </component>
@@ -259,7 +266,8 @@
     <MESSAGE value="定时器修改" />
     <MESSAGE value="msg" />
     <MESSAGE value="增加搜题功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加搜题功能" />
+    <MESSAGE value="增加at消息的兑换码指令处理" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加at消息的兑换码指令处理" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>

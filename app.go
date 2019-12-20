@@ -317,7 +317,8 @@ func robotAnswer(fromGroup, fromQQ int64, msg string) {
 	var robotMsg RobotMsg
 	var jsonIterator = jsoniter.ConfigCompatibleWithStandardLibrary
 	if err := jsonIterator.Unmarshal(body, &robotMsg); err == nil {
-		cqp.SendGroupMsg(fromGroup, util.CQCode("at", "qq", fromQQ)+util.Escape(robotMsg.Content))
+		answer := strings.Replace(robotMsg.Content, "菲菲", "改改", 0)
+		cqp.SendGroupMsg(fromGroup, util.CQCode("at", "qq", fromQQ)+util.Escape(answer))
 	} else {
 		cqp.AddLog(cqp.Debug, "robotAnswer-answer", err.Error())
 	}
